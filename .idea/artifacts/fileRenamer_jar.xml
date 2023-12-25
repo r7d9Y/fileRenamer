@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fileRenamer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/fileRenamer_jar</output-path>
+    <root id="archive" name="fileRenamer.jar">
+      <element id="module-output" name="fileRenamer" />
+    </root>
+  </artifact>
+</component>
