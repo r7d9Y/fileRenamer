@@ -157,10 +157,10 @@ public class FileRenamer {
                             String file = files[i];
                             switch (nameModifierType) {
                                 case 1:
-                                    renameFile(input + "\\" + file, deleteBefore(file, arg1));
+                                    renameFile(input + "\\" + file, deleteAfter(file, arg1));
                                     break;
                                 case 2:
-                                    renameFile(input + "\\" + file, deleteAfter(file, arg1));
+                                    renameFile(input + "\\" + file, deleteBefore(file, arg1));
                                     break;
                                 case 3:
                                     renameFile(input + "\\" + file, deleteBetween(file, arg1, arg2));
