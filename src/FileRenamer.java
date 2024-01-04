@@ -2,8 +2,8 @@
  * FileRenamer is a command-line utility that renames files within a folder based on specified arguments and options
  *
  * @version 1.3
- * @author Rand7Y9@gmail.com
- * @since 2023
+ * @author Rand7Y9Z@gmail.com
+ * @since 2024
  *
  * (needs JRE That supports 'class file version 63.0' or higher) -> https://www.java.com/en/download/manual.jsp
  *                                                                  https://www.oracle.com/java/technologies/downloads
