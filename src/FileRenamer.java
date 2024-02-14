@@ -24,7 +24,7 @@ import java.util.stream.IntStream;
 public class FileRenamer {
 
     public static String programName = "FileRenamer";
-    public static double version = 1.3;
+    public static double version = 1.4;
 
     // ANSI escape code constants for text colors
     static final String RESET = "\u001B[0m";
@@ -39,7 +39,9 @@ public class FileRenamer {
 
     public static void main(String[] args) {
 
-        System.out.println("\n" + programName + " " + version + " (2023) \nFor more info write: show -info\n------------------------------------------------------------------------------------------------------------");
+        System.out.printf("\n%s %s (2023) " +
+                "\nFor more info write: show -info" +
+                "\n------------------------------------------------------------------------------------------------------------%n", programName, version);
 
         int nameModifierType = 3;
 
@@ -105,7 +107,8 @@ public class FileRenamer {
                             change\s
                               -before  (deletes every char in the file names of the file in the given folder before arg1)
                               -after   (deletes every char in the file names of the file in the given folder after arg1\s
-                                       (pay attention to the file names extensions though, so please use '-between' with '.' as the second arg if you want to delete chars between arg1 and the extension))\s
+                                       (pay attention to the file names extensions though, so please use '-between'
+                                        with '.' as the second arg if you want to delete chars between arg1 and the extension))\s
                               -between (deletes every char between arg1 and arg2
                               -char    (deletes arg1 (and arg2 if there) in the file names)
                               -include (only keeps the chars in the file name specified by arg3)
