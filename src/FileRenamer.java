@@ -1,12 +1,12 @@
 /**
  * FileRenamer is a command-line utility that renames files within a folder based on specified arguments and options
  *
- * @version 1.3
+ * @version 1.5
  * @author Rand7Y9Z@gmail.com
  * @since 2024
- *
+ * <p>
  * (needs JRE That supports 'class file version 63.0' or higher) -> https://www.java.com/en/download/manual.jsp
- *                                                                  https://www.oracle.com/java/technologies/downloads
+ * https://www.oracle.com/java/technologies/downloads
  */
 
 
@@ -24,7 +24,7 @@ import java.util.stream.IntStream;
 public class FileRenamer {
 
     public static String programName = "FileRenamer";
-    public static double version = 1.4;
+    public static double version = 1.5;
 
     // ANSI escape code constants for text colors
     static final String RESET = "\u001B[0m";
@@ -35,13 +35,15 @@ public class FileRenamer {
     static final String WHITE = "\u001B[37m";
     static final String YELLOW = "\u001B[33m";
 
-    static final String[] modes = {"", "after (arg1)", "before (arg1)", "between (arg1 and arg2)", "char (delete arg1 and arg2)", "included (in arg3)", "excluded (in arg3)"};
+    static final String[] modes = {"", "after (arg1)", "before (arg1)", "between (arg1 and arg2)", "char (delete arg1 and arg2)", "included (in arg3)", "excluded (in arg3)", "removeWhiteSpaces"};
 
     public static void main(String[] args) {
 
-        System.out.printf("\n%s %s (2023) " +
-                "\nFor more info write: show -info" +
-                "\n------------------------------------------------------------------------------------------------------------%n", programName, version);
+        System.out.printf("""
+
+                %s %s (2023)\s
+                For more info write: show -info
+                ------------------------------------------------------------------------------------------------------------%n""", programName, version);
 
         int nameModifierType = 3;
 
@@ -79,6 +81,8 @@ public class FileRenamer {
                     nameModifierType = 5;
                 } else if (input.contains("-exclude")) {
                     nameModifierType = 6;
+                } else if (input.toLowerCase().contains("-removewhitespaces")) {
+                    nameModifierType = 7;
                 } else if (input.contains("-args")) {
                     System.out.print("First Arg: ");
                     arg1 = in.nextLine().charAt(0);
@@ -113,6 +117,7 @@ public class FileRenamer {
                               -char    (deletes arg1 (and arg2 if there) in the file names)
                               -include (only keeps the chars in the file name specified by arg3)
                               -exclude (deletes the chars in the file name specified by arg3)
+                              -removeWhiteSpaces (removes white spaces in the file names at the beginning and end)
                               -args    (allows to change the value of of arg1 and arg2)
                               -arg3    (allows to change the value of of arg3 or give it a value)
                               -arg3 --alphaNumeric (sets arg3 to only alphaNumeric chars)
@@ -176,6 +181,9 @@ public class FileRenamer {
                                     break;
                                 case 6:
                                     renameFile(input + "\\" + file, deleteChars(file, arg3, false));
+                                    break;
+                                case 7:
+                                    renameFile(input + "\\" + file, removeWhiteSpaces(file));
                                     break;
                                 default:
                                     throw new IllegalStateException(RED + "Unexpected value for nameModifierType -> " + BLUE + nameModifierType + RESET);
@@ -340,6 +348,13 @@ public class FileRenamer {
         } catch (Exception e) {
             return s;
         }
+    }
+
+    /*
+     * Removes white spaces from the given string at the beginning and end
+     */
+    public static String removeWhiteSpaces(String s) {
+        return s.strip().trim();
     }
 
 }
